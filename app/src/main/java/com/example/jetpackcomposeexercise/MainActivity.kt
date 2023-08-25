@@ -21,8 +21,16 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -30,6 +38,12 @@ import androidx.compose.ui.unit.sp
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val fontFamily = FontFamily(
+            Font(R.font.roboto_medium, FontWeight.Medium),
+            Font(R.font.roboto_bold, FontWeight.Bold),
+            Font(R.font.roboto_light, FontWeight.Light)
+        )
         setContent {
             /*   Row(
                    modifier = Modifier
@@ -53,7 +67,7 @@ class MainActivity : ComponentActivity() {
                 Text(text = "World1")
             }*/
 
-            val painter = painterResource(id = R.drawable.sample)
+            /*val painter = painterResource(id = R.drawable.sample)
             val contentDescription = "This is a sample image used for tutorial"
 
             Box(
@@ -66,9 +80,43 @@ class MainActivity : ComponentActivity() {
                     contentDescription = contentDescription,
                     title = contentDescription
                 )
+            }*/
+
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(Color.Black)
+            ) {
+                Text(
+                    text = buildAnnotatedString {
+                        withStyle(
+                            style = SpanStyle(
+                                color = Color.Red,
+                                fontSize = 60.sp
+                            )
+                        ) {
+                            append("N")
+                        }
+                        append("ishant ")
+                        withStyle(
+                            style = SpanStyle(
+                                color = Color.Red,
+                                fontSize = 60.sp
+                            )
+                        ) {
+                            append("K")
+                        }
+                        append("handelwal")
+                    },
+                    color = Color.White,
+                    fontSize = 30.sp,
+                    fontFamily = fontFamily,
+                    fontWeight = FontWeight.Bold,
+                    fontStyle = FontStyle.Italic,
+                    textAlign = TextAlign.Center,
+                    textDecoration = TextDecoration.Underline
+                )
             }
-
-
         }
     }
 }
